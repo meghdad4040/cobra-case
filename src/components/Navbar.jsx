@@ -3,10 +3,16 @@ import MaxWidthWrapper from "./maxWidthWrapper"
 import { buttonVariants } from "./ui/button"
 import { ArrowRight } from "lucide-react"
 import Toggletheme from "./Toggeltheme"
+import { LoginLink, RegisterLink, getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 
-const Navbar = () => {
- const user = false
- const isAdmin = false
+const Navbar = async () => {
+
+ const { isAuth, getUser } = getKindeServerSession();
+ console.log(isAuth)
+
+ const user = await getUser()
+ const isAdmin = user?.email === process.env.ADMIN_EMAIL
+ console.log(user)
 
  return (
   <nav className=" sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 dark:border-gray-900  bg-white/30 dark:bg-indigo-950/30 backdrop-blur-lg transition-all">
@@ -43,14 +49,20 @@ const Navbar = () => {
        </>
       ) : (
        <>
-        <Link href={"/api/auth/register"}
+
+        {/* ***************method 1 for button sign up and login*************** */}
+        {/* <Link href={"/api/auth/register"}
          className={buttonVariants({ size: "sm", variant: "ghost" })}>
          Sign up
         </Link>
         <Link href={"/api/auth/login"}
          className={buttonVariants({ size: "sm", variant: "ghost" })}>
          Login
-        </Link>
+        </Link> */}
+
+        {/* ***************method 2 for button sign up and login*************** */}
+        <RegisterLink>Sign up</RegisterLink>
+        <LoginLink>login</LoginLink>
         <div className=" h-8 w-px bg-zinc-200 hidden sm:block" />
         {/* <Link href={"/configure/upload"}
          className={buttonVariants({ size: "sm", className: " !text-gray-50 hidden sm:flex items-center gap-1" })}>
