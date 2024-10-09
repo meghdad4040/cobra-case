@@ -15,7 +15,7 @@ const Navbar = async () => {
  console.log(user)
 
  return (
-  <nav className=" sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 dark:border-gray-900  bg-white/30 dark:bg-indigo-950/30 backdrop-blur-lg transition-all">
+  <nav className=" sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 dark:border-gray-900  bg-[#f1f1f1e8] dark:bg-indigo-950/30 backdrop-blur-sm transition-all">
    <MaxWidthWrapper>
     <div className=" flex h-14 items-center justify-between ">
      <div className=" flex gap-4 items-center justify-center">
